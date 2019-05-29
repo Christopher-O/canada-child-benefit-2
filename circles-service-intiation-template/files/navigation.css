@@ -89,40 +89,36 @@ main#steps-navigation h1#wb-cont-section {
 	margin-bottom: 0px!important;
 	line-height: inherit!important
 }
+.vertical-steps {
+	margin-top: 6px;
+}
 ol.vertical-steps {
 	margin-left: -10px;
-	margin-top: 6px;
 }
 ul.vertical-steps {
 	margin-left: -16px;
 }
-.vertical-steps ol {
-	margin-left: -11px
-}
-.vertical-steps ul {
-	margin-left: -18px;
-}
-.vertical-steps li {
+.vertical-steps>li {
 	padding-bottom: 20px;
 	list-style: none;
 	margin-left: -12px;
 	border-left: 5px solid #26374a;
 	position: relative;
 }
-ol.vertical-steps li, ul.vertical-steps ol li {
+ol.vertical-steps>li {
 	padding-left: 29px;
 	counter-increment: step-counter;
 }
-ul.vertical-steps li {
+ul.vertical-steps>li, .vertical-steps ul>li {
 	padding-left: 25px
 }
 .vertical-steps li a::before {
 	text-decoration: underline;
 }
-ul.vertical-steps.noline li {
+ul.vertical-steps.noline>li {
 	border-left: 5px solid transparent
 }
-.vertical-steps li>:first-child::before {
+.vertical-steps>li>:first-child::before {
 	border-radius: 50%;
 	border: 3px solid #26374a;
 	background-color: #fff;
@@ -135,21 +131,21 @@ ul.vertical-steps.noline li {
 	-webkit-transition: all 0.2s; /* For Safari 3.1 to 6.0 */
 	transition: all 0.2s;
 }
-ol.vertical-steps li>:first-child::before, ul.vertical-steps ol li>:first-child::before {
+ol.vertical-steps>li>:first-child::before {
 	height: 34px;
 	width: 34px;
 	margin-left: -52px;
 }
-ul.vertical-steps li>:first-child::before, .vertical-steps li ul li>:first-child::before, .vertical-steps li li ul li>:first-child::before {
+ul.vertical-steps>li>:first-child::before {
 	height: 18px;
 	width: 18px;
 	margin-left: -40px;
 	content: "";
 }
-ul.vertical-steps.noline li>:first-child::before {
+ul.vertical-steps.noline>li>:first-child::before {
 	margin-top: 0.3em
 }
-ul.vertical-steps li a[href]:hover::before, .vertical-steps li ul li a[href]:hover::before, .vertical-steps li li ul li a[href]:hover::before {
+ul.vertical-steps>li>a[href]:hover::before {
 	width: 20px;
 	height: 20px;
 	margin-top: -1px;
@@ -158,22 +154,22 @@ ul.vertical-steps li a[href]:hover::before, .vertical-steps li ul li a[href]:hov
 	margin-left: -41px;
 	line-height: 1.55;
 }
-ul.vertical-steps.noline li a[href]:hover::before {
+ul.vertical-steps.noline>li>a[href]:hover::before {
 	margin-top: 0.25em
 }
-ol.vertical-steps li>:first-child::before, ul.vertical-steps li>ol li>:first-child::before {
+ol.vertical-steps>li>:first-child::before {
 	content: counter(step-counter);
 }
-ol.vertical-steps li a[href]:hover::before, ul.vertical-steps li ol li a[href]:hover::before {
-	width: 38px;
-	height: 38px;
+ol.vertical-steps>li>a[href]:hover::before {
+	width: 36px;
+	height: 36px;
 	margin-top: -2px;
 	font-size: 1.2em;
-	margin-right: 10px;
-	margin-left: -54px;
+	margin-right: -2px;
+	margin-left: -53px;
 	line-height: 1.5;
 }
-.vertical-steps li:last-child, .vertical-steps li:last-child.completed {
+.vertical-steps>li:last-child, .vertical-steps>li.completed:last-child, ul.fa-vertical-steps li:last-child {
 	border-left: 5px solid transparent;
 	padding-bottom: 0;
 }
@@ -212,11 +208,8 @@ ul.fa-vertical-steps li {
 	position: relative;
 	padding-left: 30px;
 }
-ul.fa-vertical-steps li:last-child {
-	border-left: 5px solid transparent;
-	padding-bottom: 0;
-}
-.fa-vertical-steps li a[href]:hover span.fa-li {
+ 
+.fa-vertical-steps>li>a[href]:hover span.fa-li {
 	height: 44px;
 	width: 44px;
 	padding-top: 2px;
@@ -225,41 +218,46 @@ ul.fa-vertical-steps li:last-child {
 	margin-top: -0.03em;
 }
 /*sub-steps*/
+
 .vertical-steps li ul, .vertical-steps li ol {
 	margin-top: 16px!important;
 }
-.vertical-steps > li li {
-	counter-increment: sub-step-counter;
+ol.vertical-steps ol.vertical-steps {
+	counter-reset: step-counter;
 }
-.vertical-steps > li ul li {
-	padding-left: 26px;
+ol.vertical-steps ol.vertical-steps>li {
+	counter-increment: step-counter;
 }
-.vertical-steps > li li > :first-child::before {
-	content: counter(sub-step-counter, upper-alpha);
+ol.vertical-steps ol.vertical-steps>li>:first-child::before {
+	content: counter(step-counter, upper-alpha);
 }
-/*sub-steps un-ordered*/	
-.vertical-steps > li ul li > :first-child::before {
-	content: "";
+/*sub-sub-steps */	
+ol.vertical-steps ol.vertical-steps ol.vertical-steps {
+	counter-reset: step-counter;
 }
-.vertical-steps > li ul li.active> :first-child::before {
+ol.vertical-steps ol.vertical-steps ol.vertical-steps>li {
+	counter-increment: step-counter;
 }
-/* sub-sub-steps */
-.vertical-steps > li li li {
-	counter-increment: sub-sub-step-counter;
+ol.vertical-steps ol.vertical-steps ol.vertical-steps>li>:first-child::before {
+	content: counter(step-counter, lower-roman);
 }
-.vertical-steps > li li li > :first-child::before {
-	content: counter(sub-sub-step-counter, lower-roman);
+/*custom list-type */
+ol.vertical-steps.lst-lwr-rmn>li>:first-child::before {
+	content: counter(step-counter, lower-roman)!important;
 }
-/*sub-sub-steps un-ordered*/	
-.vertical-steps > li li ul li > :first-child::before {
+ol.vertical-steps.lst-upr-rmn>li>:first-child::before {
+	content: counter(step-counter, upper-roman)!important;
 }
-.vertical-steps > li li ul li.active> :first-child::before {
+ol.vertical-steps.lst-upr-alph>li>:first-child::before {
+	content: counter(step-counter, upper-alpha)!important;
+}
+ol.vertical-steps.lst-lwr-alph>li>:first-child::before {
+	content: counter(step-counter, lower-alpha)!important;
+}
+ol.vertical-steps.lst-num>li>:first-child::before {
+	content: counter(step-counter)!important;
 }
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-ul.vertical-steps li ol li a[href]:hover::before
-	{line-height:1.2}
-}
 /* Top of page button */
 nav#tp-pg {
 	position: fixed;
